@@ -14,7 +14,7 @@
     totalCnt = 0,
     visibleLabel = false,
     label = $('<div class="jqcart-cart-label"><span class="jqcart-title"><i class="fas fa-shopping-basket"></i></span><span class="jqcart-total-cnt">x</span></div>'),
-    modal = '<div id="modal_form jqcart-layout" ><div class="containerTovar jqcart-checkout"></div></div>',
+    modal = '<div id="overlay"></div><div id="modal_form" class="jqcart-layout" ><div class="containerTovar jqcart-checkout"></div></div>',
       orderform = '<p class="jqcart-cart-title">Контактная информация:</p><form class="jqcart-orderform"><p><label>ФИО:</label><input type="text" name="user_name"></p><p><label>Телефон:</label><input type="text" name="user_phone"></p><p><label>Email:</label><input type="text" name="user_mail"></p><p><label>Адрес:</label><input type="text" name="user_address"></p><p><label>Коментарий:</label><textarea name="user_comment"></textarea></p><p><input type="submit" value="Отправить заказ"><input type="reset" value="Вернуться к покупкам"></p></form>';
   var opts = {
 		buttons: '.add_item',
@@ -169,7 +169,7 @@
       $(modal).appendTo('.modal_form').find('.jqcart-checkout').html(cartHtml);
     },
     hideCart: function() {
-      $('.jqcart-layout').fadeOut('fast', function() {
+      $('.jqcart-layout, #overlay').fadeOut('fast', function() {
         $(this).remove();
       });
       return false;
