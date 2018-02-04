@@ -33,7 +33,7 @@ header{
     position: fixed;
     height: 0;
     overflow: hidden;
-    background: #f4f4f4;
+    background: #fefefe;
     width: 100%;
     z-index: 20;
     color: #383c40;
@@ -189,6 +189,8 @@ header{
 /*******************/
 #features{
     padding: 70px 0;
+    background: #383c40;
+    color: #ddd;
 }
 
 .features-wrap{
@@ -245,13 +247,15 @@ header{
 
 section#category{
     padding: 35px 0;
-    background: #383c40;
+    background: #f9f9f9;
 }
 
 .menu-category{
     border-radius: 10px;
     overflow: hidden;
     margin: 10px 0;
+
+    box-shadow: 0px 0px 5px 0px rgba(90,90,90,1);
 }
 
 .menu-category-title{
