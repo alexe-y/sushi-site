@@ -288,22 +288,23 @@ section#category{
     transform: rotate(90deg) rotateY(0);
 }
 
-#burgers_1 .menu-category-title .bg-image{
+
+#cat_firm .menu-category-title .bg-image{
     background-image: url(http://themebeer.com/soup/wp-content/uploads/2017/05/menu-title-burgers-1.jpg);
 }
-#pasta_1 .menu-category-title .bg-image{
+#cat_dragons .menu-category-title .bg-image{
     background-image: url("http://themebeer.com/soup/wp-content/uploads/2017/05/menu-title-pasta-1.jpg");
 }
-#pizza_1 .menu-category-title .bg-image{
+#cat_sets .menu-category-title .bg-image{
     background-image: url("http://themebeer.com/soup/wp-content/uploads/2017/05/menu-title-pizza-1.jpg");
 }
 #sushi_1 .menu-category-title .bg-image{
     background-image: url("http://themebeer.com/soup/wp-content/uploads/2017/05/menu-title-sushi-1.jpg");
 }
-#desserts_1 .menu-category-title .bg-image{
+#cat_sushi .menu-category-title .bg-image{
     background-image: url("http://themebeer.com/soup/wp-content/uploads/2017/05/menu-title-desserts-1.jpg");
 }
-#drinks_1 .menu-category-title .bg-image{
+#cat_adds .menu-category-title .bg-image{
     background-image: url("http://themebeer.com/soup/wp-content/uploads/2017/05/menu-title-drinks-1.jpg");
 }
 .menu-category-title .bg-image{
@@ -403,11 +404,18 @@ section#category{
     transition: .4s;
     overflow: hidden;
 }
+.btn-primary{
+    position: absolute;
+    width: 90%;
+    bottom: 10px;
+    border-radius: 5px;
+    left: 5%;
+}
 
-.btn:hover{
+.btn-primary:hover{
     letter-spacing: 1px;
 }
-.btn:before {
+.btn-primary:before {
     position: absolute;
     top: -2px;
     left: -2px;
@@ -430,7 +438,7 @@ section#category{
     -o-transform: scaleY(0);
     transform: scaleY(0);
 }
-.btn:hover:before, .btn:focus:before, .btn:active:before, .btn:focus:active:before {
+.btn-primary:hover:before, .btn-primary:focus:before, .btn-primary:active:before, .btn-primary:focus:active:before {
     visibility: visible;
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);
@@ -569,13 +577,7 @@ footer{
     font-size: 22px;
 }
 
-.btn-primary{
-    position: absolute;
-    width: 90%;
-    bottom: 10px;
-    border-radius: 5px;
-    left: 5%;
-}
+
 #overlay {
     z-index:30;
     position:fixed;
