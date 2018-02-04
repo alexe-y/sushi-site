@@ -13,16 +13,16 @@
     orderPreview = '',
     totalCnt = 0,
     visibleLabel = false,
-    label = $('<div class="jqcart-cart-label"><span class="jqcart-title">Оформить заказ</span><span class="jqcart-total-cnt">0</span></div>'),
-    modal = '<div class="jqcart-layout"><div class="jqcart-checkout">123</div></div>',
-    orderform = '<p class="jqcart-cart-title">Контактная информация:</p><form class="jqcart-orderform"><p><label>ФИО:</label><input type="text" name="user_name"></p><p><label>Телефон:</label><input type="text" name="user_phone"></p><p><label>Email:</label><input type="text" name="user_mail"></p><p><label>Адрес:</label><input type="text" name="user_address"></p><p><label>Коментарий:</label><textarea name="user_comment"></textarea></p><p><input type="submit" value="Отправить заказ"><input type="reset" value="Вернуться к покупкам"></p></form>';
+    label = $('<div class="jqcart-cart-label"><span class="jqcart-title"><i class="fas fa-shopping-basket"></i></span><span class="jqcart-total-cnt">x</span></div>'),
+    modal = '<div id="modal_form jqcart-layout" ><div class="containerTovar jqcart-checkout"></div></div>',
+      orderform = '<p class="jqcart-cart-title">Контактная информация:</p><form class="jqcart-orderform"><p><label>ФИО:</label><input type="text" name="user_name"></p><p><label>Телефон:</label><input type="text" name="user_phone"></p><p><label>Email:</label><input type="text" name="user_mail"></p><p><label>Адрес:</label><input type="text" name="user_address"></p><p><label>Коментарий:</label><textarea name="user_comment"></textarea></p><p><input type="submit" value="Отправить заказ"><input type="reset" value="Вернуться к покупкам"></p></form>';
   var opts = {
 		buttons: '.add_item',
-		cartLabel: '.basket',
-		visibleLabel: true,
+		cartLabel: 'body',
+		visibleLabel: false,
 		openByAdding: false,
-    handler: 'order/newOrder',
-		currency: 'грн'
+    handler: '/',
+		currency: '$'
   };
   var actions = {
     init: function(o) {
@@ -123,7 +123,7 @@
 				subtotal = Math.ceil((subtotal + sum) * 100) / 100;
         totalCnt += amount;
       });
-      $('.jqcart-subtotal strong').text(subtotal);
+      $('.jqcart-subtotal span').text(subtotal);
       $('.jqcart-total-cnt').text(totalCnt);
       if (totalCnt <= 0) {
 				actions.hideCart();
@@ -142,29 +142,31 @@
       var subtotal = 0,
 			cartHtml = '';
       cartData = actions.getStorage();
-      orderPreview = '<p class="jqcart-cart-title">Корзина <span class="jqcart-print-order"></span></p><div class="jqcart-table-wrapper"><div class="jqcart-manage-order"><div class="jqcart-thead"><div>ID</div><div></div><div>Наименование</div><div>Цена</div><div>Кол-во</div><div>Сумма</div><div></div></div>';
-      var key, sum = 0;
+      orderPreview = ' <p class="modal-title">Корзина</p> ';
+      var key, sum = 0, counter=0;
       for (key in cartData) {
+          counter++;
         if (cartData.hasOwnProperty(key)) {
 					sum = Math.ceil((cartData[key].count * cartData[key].price) * 100) / 100;
 					subtotal = Math.ceil((subtotal + sum) * 100) / 100;
 					
-          orderPreview += '<div class="jqcart-tr" data-id="' + cartData[key].id + '">';
-					orderPreview += '<div class="jqcart-small-td">' + cartData[key].id + '</div>';
-					orderPreview += '<div class="jqcart-small-td jqcart-item-img"><img src="' + cartData[key].img + '" alt=""></div>';
-          orderPreview += '<div>' + cartData[key].title + '</div>';
-          orderPreview += '<div class="jqcart-price">' + cartData[key].price + '</div>';
-          orderPreview += '<div><span class="jqcart-incr" data-incr="-1">&#8211;</span><input type="text" class="jqcart-amount" value="' + cartData[key].count + '"><span class="jqcart-incr" data-incr="1">+</span></div>';
-          orderPreview += '<div class="jqcart-sum">' + sum + ' ' + opts.currency + '</div>';
-					orderPreview += '<div class="jqcart-small-td"><span class="jqcart-del-item"></span></div>';
+          orderPreview += ' <div class="tovar jqcart-tr" data-id="' + cartData[key].id + '">';
+					orderPreview += '<div class="tovar-num">' + cartData[key].id + '</div>';
+                    orderPreview += ' <div class="tovar-name">' + cartData[key].title + '</div>';
+
+          //orderPreview += '<div><span class="jqcart-incr" data-incr="-1">&#8211;</span><input type="text" class="jqcart-amount" value="' + cartData[key].count + '"><span class="jqcart-incr" data-incr="1">+</span></div>';
+          //orderPreview += '<div class="jqcart-sum">' + sum + ' ' + opts.currency + '</div>';
+
+            orderPreview += '<div class="tovar-price jqcart-price">' + cartData[key].price + opts.currency +  '</div>';
+					orderPreview += ' <div class="tover-cencel"><span class="jqcart-del-item">x</span></div>';
           orderPreview += '</div>';
         }
       }
-      orderPreview += '</div></div>';
-      orderPreview += '<div class="jqcart-subtotal">Итого: <strong>' + subtotal + '</strong> ' + opts.currency + '</div>';
+
+      orderPreview += '<div class="total-price jqcart-subtotal"><p>Total: <span>' + subtotal + '</span> ' + opts.currency + '</p></div>';
 			
 			cartHtml = subtotal ? (orderPreview + orderform) : '<h2 class="jqcart-empty-cart">Корзина пуста</h2>';
-      $(modal).appendTo('body').find('.jqcart-checkout').html(cartHtml);
+      $(modal).appendTo('.modal_form').find('.jqcart-checkout').html(cartHtml);
     },
     hideCart: function() {
       $('.jqcart-layout').fadeOut('fast', function() {

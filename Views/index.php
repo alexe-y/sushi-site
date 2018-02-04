@@ -17,8 +17,8 @@
         <div class="header-wrap">
             <div class="logo header-item"><img src="Views/img/logo-light.png" alt=""></div>
             <div class="place header-item"><i class="fas fa-map-marker-alt"></i>&nbsp;Житомир</div>
-            <div class="tel header-item"><i class="fas fa-phone"></i>&nbsp;(098) 765 43 21</div>
-            <div class="basket header-item" id="basc"><i class="fas fa-shopping-basket"></i><span class="jqcart-total-cnt"> x пусто</span></div>
+            <div class="tel header-item" id="open"><i class="fas fa-phone"></i>&nbsp;(098) 765 43 21</div>
+            <div class="basket header-item" id="basc"><!--<i class="fas fa-shopping-basket"></i><span class="jqcart-total-cnt"> x пусто</span>--></div>
         </div>
     </div>
 </header>
@@ -380,44 +380,66 @@
     </footer>
 
 
-    <div id="modal_form">
-        <p class="modal-title">Корзина</p>
-            <div class="containerTovar">
-                <div class="tovar-1 tovar">
-                    <div class="tovar-num">1.</div>
-                    <div class="tovar-name">fsdgfdg</div>
-                    <div class="tovar-price"> 5454</div>
-                    <div class="tover-cencel">x</div>
-                </div>
-                
-                <div class="tovar-2 tovar">
-                    <div class="tovar-num">2.</div>
-                    <div class="tovar-name">sdgfdsg</div>
-                    <div class="tovar-price">87</div>
-                    <div class="tover-cencel">x</div>
-                </div>
+   <div id="modal_form">
+<!--        <p class="modal-title">Корзина</p>-->
+<!--            <div class="containerTovar">-->
+<!--                <div class="tovar">-->
+<!--                    <div class="tovar-num">1.</div>-->
+<!--                    <div class="tovar-name">fsdgfdg</div>-->
+<!--                    <div class="tovar-price"> 5454</div>-->
+<!--                    <div class="tover-cencel">x</div>-->
+<!--                </div>-->
+<!---->
+<!--                <div class="tovar">-->
+<!--                    <div class="tovar-num">2.</div>-->
+<!--                    <div class="tovar-name">sdgfdsg</div>-->
+<!--                    <div class="tovar-price">87</div>-->
+<!--                    <div class="tover-cencel">x</div>-->
+<!--                </div>-->
+<!---->
+<!--                <div class="tovar">-->
+<!--                    <div class="tovar-num">3.</div>-->
+<!--                    <div class="tovar-name">dsgethteytey</div>-->
+<!--                    <div class="tovar-price">658</div>-->
+<!--                    <div class="tover-cencel">x</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            <div class="total-price">-->
+<!--                <p>Total: <span>$12</span></p>-->
+<!--            </div>-->
+<!---->
+<!--            <button type="button" class="btn btn-primary" onclick="window.location = '/order'" name="button">Оформить заказ</button>-->
+<!---->
+ <span id="modal_close"><i class="fas fa-times"></i></span>
+    </div>
 
-                <div class="tovar-3 tovar">
-                    <div class="tovar-num">3.</div>
-                    <div class="tovar-name">dsgethteytey</div>
-                    <div class="tovar-price">658</div>
-                    <div class="tover-cencel">x</div>
-                </div>
-            </div>
-
-            <div class="total-price">
-                <p>Total: <span>$12</span></p>
-            </div>
-
-            <button type="button" class="btn btn-primary" onclick="window.location = '/order'" name="button">Оформить заказ</button>
-
-            <span id="modal_close"><i class="fas fa-times"></i></span>
-        </div>
-        <div id="overlay"></div>
+<div id="overlay"></div>
 
     <script src="Views/js/jquery-1.11.3.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="Views/js/main.js"></script>
     <script src="Views/js/jqcart.min.js"></script>
+    <script>
+        $(function(){
+            'use strict';
+            // инициализация плагина
+            $.jqCart({
+                buttons: '.add_item',
+                handler: './order/newOrder',
+                cartLabel: '.basket',
+                visibleLabel: true,
+                openByAdding: false,
+                currency: 'грн.'
+            });
+            // Пример с дополнительными методами
+            $('#open').click(function(){
+                $.jqCart('openCart'); // открыть корзину
+            });
+            $('#clear').click(function(){
+                $.jqCart('clearCart'); // очистить корзину
+            });
+        });
+    </script>
 </body>
 </html>
