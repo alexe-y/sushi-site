@@ -6,7 +6,7 @@ class Product
     public static function getProductList()
     {
         $db = db::getInstance()->db;
-        $result = $db->query('SELECT * FROM mg_product  ORDER BY sort DESC');
+        $result = $db->query('SELECT * FROM mg_product  ORDER BY sort ASC');
         $i = 0;
         $productList = false;
         while ($row = $result->fetch()) {
